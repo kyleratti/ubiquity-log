@@ -12,9 +12,10 @@ class "ubilog" {
 
     private {
         m_strRealm = "";
+        m_strPrefix = "";
 
         doLog = function(self, strLogLevel, str, ...)
-            print(string.format("[%s] %s.%s: %s", os.date("%Y/%m/%d %H:%M:%S"), self:getRealm(), strLogLevel, string.format(str, unpack({...}))))
+            print(string.format("[%s] %s.%s: %s%s", os.date("%Y/%m/%d %H:%M:%S"), self:getRealm(), strLogLevel, #self:getPrefix() > 0 and self:getPrefix()..": " or "", string.format(str, unpack({...}))))
         end;
     };
 
@@ -25,6 +26,15 @@ class "ubilog" {
 
         getRealm = function(self)
             return self.m_strRealm
+        end;
+
+        setPrefix = function(self, str)
+            self.m_strPrefix = str
+            return self
+        end;
+
+        getPrefix = function(self)
+            return self.m_strPrefix
         end;
 
         debug = function(self, str, ...)
