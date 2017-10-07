@@ -50,7 +50,11 @@ class "ubilog" {
         end;
 
         warning = function(self, str, ...)
-            self:doLog("WARNING", str, ...)
+            self:warn(str, ...)
+        end;
+
+        warn = function(self, str, ...)
+            self:doLog("WARN", str, ...)
         end;
 
         error = function(self, str, ...)
