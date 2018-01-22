@@ -14,8 +14,8 @@ class "ubilog" {
         m_strRealm = "";
         m_strPrefix = "";
 
-        doLog = function(self, strLogLevel, str, ...)
-            print(string.format("[%s] %s.%s: %s%s", os.date("%Y/%m/%d %H:%M:%S"), self:getRealm(), strLogLevel, #self:getPrefix() > 0 and self:getPrefix()..": " or "", string.format(str, unpack({...}))))
+        doLog = function(self, strLogLevel, objColor, str, ...)
+            MsgC(objColor, string.format("[%s] %s.%s: %s%s\n", os.date("%Y/%m/%d %H:%M:%S"), self:getRealm(), strLogLevel, #self:getPrefix() > 0 and self:getPrefix()..": " or "", string.format(str, unpack({...}))))
         end;
     };
 
@@ -38,15 +38,15 @@ class "ubilog" {
         end;
 
         debug = function(self, str, ...)
-            self:doLog("DEBUG", str, ...)
+            self:doLog("DEBUG", Color(0, 255, 255), str, ...)
         end;
 
         info = function(self, str, ...)
-            self:doLog("INFO", str, ...)
+            self:doLog("INFO", Color(125, 125, 255), str, ...)
         end;
 
         notice = function(self, str, ...)
-            self:doLog("NOTICE", str, ...)
+            self:doLog("NOTICE", Color(255, 255, 0), str, ...)
         end;
 
         warning = function(self, str, ...)
@@ -54,23 +54,23 @@ class "ubilog" {
         end;
 
         warn = function(self, str, ...)
-            self:doLog("WARN", str, ...)
+            self:doLog("WARN", Color(255, 125, 0), str, ...)
         end;
 
         error = function(self, str, ...)
-            self:doLog("ERROR", str, ...)
+            self:doLog("ERROR", Color(75, 0, 0), str, ...)
         end;
 
         critical = function(self, str, ...)
-            self:doLog("CRITICAL", str, ...)
+            self:doLog("CRITICAL", Color(125, 0, 0), str, ...)
         end;
 
         alert = function(self, str, ...)
-            self:doLog("ALERT", str, ...)
+            self:doLog("ALERT", Color(175, 0, 0), str, ...)
         end;
 
         emergency = function(self, str, ...)
-            self:doLog("EMERGENCY", str, ...)
+            self:doLog("EMERGENCY", Color(255, 0, 0), str, ...)
         end;
     };
 }
